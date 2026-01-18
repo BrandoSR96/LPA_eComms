@@ -90,7 +90,7 @@ include '../includes/header.php';
             <label class="form-check-label" for="enabled">Habilitado</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Ipa_tock_status" id="disabled" value="inactivo">
+            <input class="form-check-input" type="radio" name="Ipa_stock_status" id="disabled" value="inactivo">
             <label class="form-check-label" for="disabled">Deshabilitado</label>
           </div>
         </div>
@@ -147,4 +147,32 @@ include '../includes/header.php';
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  const stockIdInput = document.querySelector('input[name="Ipa_stock_ID"]');
+  if (stockIdInput) {
+    stockIdInput.addEventListener('blur', function () {
+      const stockId = this.value.trim();
+      if (stockId !== '') {
+        fetch(`get_stock_by_id.php?id=${stockId}`)
+          .then(res => res.json())
+          .then(data => {
+            if (data && data.Ipa_stock_ID) {
+              document.querySelector('input[name="Ipa_stock_name"]').value = data.Ipa_stock_name || '';
+              document.querySelector('input[name="Ipa_stock_desc"]').value = data.Ipa_stock_desc || '';
+              document.querySelector('input[name="Ipa_stock_onhand"]').value = data.Ipa_stock_onhand || 0;
+              document.querySelector('input[name="Ipa_stock_price"]').value = data.Ipa_stock_price || 0.00;
+
+              if (data.Ipa_stock_status === 'activo') {
+                document.getElementById('enabled').checked = true;
+              } else {
+                document.getElementById('disabled').checked = true;
+              }
+            }
+          });
+      }
+    });
+  }
+});
+</script>
 <?php include '../includes/footer.php'; ?>

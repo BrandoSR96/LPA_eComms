@@ -19,6 +19,8 @@ if (session_status() === PHP_SESSION_NONE) { session_start(); }
       <nav class="d-none d-md-block">
         <a href="index.php" class="text-white me-3">Home</a>
         <a href="stock.php" class="text-white me-3">Stock</a>
+        <a href="clients.php" class="text-white me-3">Clientes</a>
+        <a href="sales_new.php" class="text-white me-3">Nueva Venta</a>
         <a href="invoices.php" class="text-white me-3">Ventas & Facturas</a>
         <a href="logout.php" class="text-white">Salir</a>
       </nav>
@@ -27,6 +29,8 @@ if (session_status() === PHP_SESSION_NONE) { session_start(); }
         <ul class="dropdown-menu dropdown-menu-end">
           <li><a class="dropdown-item" href="index.php">Home</a></li>
           <li><a class="dropdown-item" href="stock.php">Stock</a></li>
+          <li><a class="dropdown-item" href="clients.php">Clientes</a></li>
+          <li><a class="dropdown-item" href="sales_new.php">Nueva Venta</a></li>
           <li><a class="dropdown-item" href="invoices.php">Ventas & Facturas</a></li>
           <li><a class="dropdown-item" href="logout.php">Salir</a></li>
         </ul>
